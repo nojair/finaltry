@@ -7,7 +7,7 @@ int encoderDIGPin = 2;
 unsigned long t1, t2;
 
 float t, f, f2;
-int Sp=0, n=0;
+int Sp=200, n=0;
 float pi = 3.14159265359;
 
 float  pid0 = 0;
@@ -19,9 +19,9 @@ float  error2 = 0;
 float  y1 = 0;
 float  y2 = 0;
 
-float  kp = 1.1378299120234605; //1.2199;
-float  ki = 1.0557184750733137; //1.2193;
-float  kd = 0.015640273704789834; //0;
+float  kp = 1.1378299120234605;  //1.1378299120234605; //1.2199;
+float  ki = 1.0557184750733137;  //1.0557184750733137; //1.2193;
+float  kd = 0.015640273704789834;//0.015640273704789834; //0;
 float  Ts = 0.22848;
 
 float  q1 = kp + 0.5 * Ts * ki + (kd / Ts);
@@ -48,8 +48,8 @@ void loop() {
 
 ISR (TIMER2_OVF_vect){ // función que se llama cada 32.64ms
   cuenta++;
-  if(cuenta > 100) { // CAMBIANDO EL SETPOINT CADA 150 cuentas = 150 * 32.64ms
-    Sp = 250; //random(150, 255);
+  if(cuenta > 400) { // CAMBIANDO EL SETPOINT CADA 150 cuentas = 150 * 32.64ms
+    Sp = random(150, 255);
     cuenta=0;
   }
 
